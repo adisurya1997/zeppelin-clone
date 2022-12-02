@@ -18,7 +18,7 @@ api_base_url = "https://api.stagingv3.microgen.id/query/api/v1/" + api_key
 def hello_geek():
     return '<h1>Hello from Flask</h2>'
 
-@app.get("/api/getcookie")
+@app.post("/api/getcookie")
 def metricsavgcpu():
     
     hostname = '10.207.26.22'
