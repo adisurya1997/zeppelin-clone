@@ -25,12 +25,18 @@ def metricsavgcpu():
     port = 9995
     username = "apps"
     password = "apps247"
-
+    userz = request.form.get('username')
+    passz= request.form.get('password')
+    usernamez= userz
+    passwordz= passz
+    
+    command = "curl -i --data 'userName=%s&password=%s' -X POST http://10.207.26.22:9995/api/login" % (usernamez , passwordz)
+    
     client = SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname, username=username, password=password)
 
-    command = "curl -i --data 'userName=admin&password=admin' -X POST http://10.207.26.22:9995/api/login"
+#     command = "curl -i --data 'userName=admin&password=admin' -X POST http://10.207.26.22:9995/api/login"
     stdin, stdout, stderr = client.exec_command(command)
     # for line in stdout.readlines():
     #     print (line)
