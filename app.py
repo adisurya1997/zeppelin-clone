@@ -54,5 +54,14 @@ def login():
     client.close()
     return xs
 
+@app.get("/api/list")
+def cpu():
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook'
+    userz = request.form.get('username')
+    cookies = {"JSESSIONID": source}
+    r = requests.get(url, cookies=cookies)
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
