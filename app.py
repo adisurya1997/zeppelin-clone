@@ -49,9 +49,10 @@ def login():
     s = x[g:u]
     my_dict = {}
     my_dict['Set-Cookie']= s
-    # print(z)
+    xs = make_response(my_dict)
+    xs.headers["Set-Cookie"] = s
     client.close()
-    return my_dict
+    return xs
 
 if __name__ == "__main__":
     app.run(debug=True)
