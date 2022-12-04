@@ -63,11 +63,9 @@ def cpu():
     r = requests.get(url, cookies=cookies)
     return r.json()
 
-@app.get("/api/nodeinformation")
-def cpus():
-    request_data = request.get_json()
-    idnode = request_data['idnode']
-    sidnode = str(idnode)
+@app.get("/api/notebook/[noteId]")
+def cpus(noteId):
+    sidnode = str(noteId)
     source = str(request.args.get('JSESSIONID'))
     url = 'http://10.207.26.22:9995/api/notebook/%s' % (sidnode)
     userz = request.form.get('username')
