@@ -63,7 +63,7 @@ def cpu():
     r = requests.get(url, cookies=cookies)
     return r.json()
 
-@app.get("/api/notebook/[noteId]")
+@app.get("/api/notebook/<noteId>")
 def cpus(noteId):
     sidnode = str(noteId)
     source = str(request.args.get('JSESSIONID'))
