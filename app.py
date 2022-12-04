@@ -75,5 +75,16 @@ def cpus():
     r = requests.get(url, cookies=cookies)
     return r.json()
 
+@app.post("/api/createnote")
+def newnote():
+    request_data = request.get_json()
+    name = request_data['name']
+    sudah = str(name)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook'
+    cookies = {"JSESSIONID": source}
+    r = requests.post(url, cookies=cookies, json={"name": sudah})
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
