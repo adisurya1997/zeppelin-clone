@@ -95,5 +95,29 @@ def deletenote(id):
     r = requests.delete(url, cookies=cookies)
     return r.json()
 
+@app.post("/api/notebook/<noteid>/paragraph")
+def newparagraph(noteid):
+    request_data = request.get_json()
+    title = request_data['title']
+    text = request_data['text']
+    snoteid = str(noteid)
+    sudah = str(title)
+    sudah2 = str(text)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook/'+snoteid+'/paragraph'
+    cookies = {"JSESSIONID": source}
+    r = requests.post(url, cookies=cookies, json={"title": sudah,"text":sudah2 })
+    return r.json()
+
+@app.post("/api/notebook/run/[noteid]/[paragraphid]")
+def runparagraph(noteid,paragraphId):
+    snoteid = str(noteid)
+    sparagraphId = str(paragraphId)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook/run/'+snoteid+'/'+sparagraphId+''
+    cookies = {"JSESSIONID": source}
+    r = requests.post(url, cookies=cookies)
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
