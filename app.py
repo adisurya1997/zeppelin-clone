@@ -86,5 +86,14 @@ def newnote():
     r = requests.post(url, cookies=cookies, json={"name": sudah})
     return r.json()
 
+@app.route("/api/<id>", methods=["DELETE"])
+def deletenote(id):
+    sudah = str(id)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook/%s' % (sudah)
+    cookies = {"JSESSIONID": source}
+    r = requests.delete(url, cookies=cookies)
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
