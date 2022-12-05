@@ -140,5 +140,14 @@ def deleteparagraph(noteid,paragraphid):
     r = requests.delete(url, cookies=cookies)
     return r.json()
 
+@app.post("/api/notebook/job/<noteid>")
+def runallparagraph(noteid):
+    snoteid = str(noteid)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook/job/'+snoteid+''
+    cookies = {"JSESSIONID": source}
+    r = requests.post(url, cookies=cookies)
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
