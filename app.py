@@ -129,13 +129,13 @@ def renameparagraph(noteid):
     r = requests.put(url, cookies=cookies, json={"name": sudah})
     return r.json()
 
-@app.route("/api/notebook/<noteId>/paragraph/<paragraphid>", methods=["DELETE"])
+@app.route("/api/notebook/<noteid>/paragraph/<paragraphid>", methods=["DELETE"])
 def deleteparagraph(noteid,paragraphid):
     sudah = str(name)
     snoteid = str(noteid)
     sparagraphId = str(paragraphid)
     source = str(request.args.get('JSESSIONID'))
-    url = 'http://10.207.26.22:9995/api/notebook'+snoteid+'/paragraph/'+sparagraphId+''
+    url = 'http://10.207.26.22:9995/api/notebook/'+snoteid+'/paragraph/'+sparagraphId+''
     cookies = {"JSESSIONID": source}
     r = requests.delete(url, cookies=cookies)
     return r.json()
