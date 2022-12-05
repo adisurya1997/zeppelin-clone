@@ -117,5 +117,17 @@ def runparagraph(noteid,paragraphid):
     r = requests.post(url, cookies=cookies)
     return r.json()
 
+@app.put("/api/notebook/<noteid>")
+def renameparagraph(noteid):
+    request_data = request.get_json()
+    name = request_data['name']
+    sudah = str(name)
+    snoteid = str(noteid)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook'+snoteid+'/'+sparagraphId+''
+    cookies = {"JSESSIONID": source}
+    r = requests.post(url, cookies=cookies, json={"name": sudah})
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
