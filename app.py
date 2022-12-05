@@ -131,7 +131,6 @@ def renameparagraph(noteid):
 
 @app.route("/api/notebook/<noteid>/paragraph/<paragraphid>", methods=["DELETE"])
 def deleteparagraph(noteid,paragraphid):
-    sudah = str(name)
     snoteid = str(noteid)
     sparagraphId = str(paragraphid)
     source = str(request.args.get('JSESSIONID'))
