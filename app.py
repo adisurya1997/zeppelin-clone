@@ -107,7 +107,7 @@ def newparagraph(noteid):
     r = requests.post(url, cookies=cookies, json={"title": sudah,"text":sudah2 })
     return r.json()
 
-@app.post("/api/notebook/run/[noteid]/[paragraphid]")
+@app.post("/api/notebook/run/<noteid>/<paragraphid>")
 def runparagraph(noteid,paragraphId):
     snoteid = str(noteid)
     sparagraphId = str(paragraphId)
