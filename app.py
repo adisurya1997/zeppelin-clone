@@ -108,9 +108,9 @@ def newparagraph(noteid):
     return r.json()
 
 @app.post("/api/notebook/run/<noteid>/<paragraphid>")
-def runparagraph(noteid,paragraphId):
+def runparagraph(noteid,paragraphid):
     snoteid = str(noteid)
-    sparagraphId = str(paragraphId)
+    sparagraphId = str(paragraphid)
     source = str(request.args.get('JSESSIONID'))
     url = 'http://10.207.26.22:9995/api/notebook/run/'+snoteid+'/'+sparagraphId+''
     cookies = {"JSESSIONID": source}
