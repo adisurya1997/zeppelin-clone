@@ -117,16 +117,27 @@ def runparagraph(noteid,paragraphid):
     r = requests.post(url, cookies=cookies)
     return r.json()
 
-@app.put("/api/notebook/<noteid>")
+@app.put("/api/notebook/<noteid>/rename")
 def renameparagraph(noteid):
     request_data = request.get_json()
     name = request_data['name']
     sudah = str(name)
     snoteid = str(noteid)
     source = str(request.args.get('JSESSIONID'))
-    url = 'http://10.207.26.22:9995/api/notebook'+snoteid+'/'+sparagraphId+''
+    url = 'http://10.207.26.22:9995/api/notebook'+snoteid+'/rename'
     cookies = {"JSESSIONID": source}
-    r = requests.post(url, cookies=cookies, json={"name": sudah})
+    r = requests.put(url, cookies=cookies, json={"name": sudah})
+    return r.json()
+
+@app.route("/api/notebook/<noteId>/paragraph/<paragraphId>", methods=["DELETE"])
+def deleteparagraph(noteid,paragraphid):
+    sudah = str(name)
+    snoteid = str(noteid)
+    sparagraphId = str(paragraphid)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook'+snoteid+'/paragraph/'+sparagraphId+''
+    cookies = {"JSESSIONID": source}
+    r = requests.delete(url, cookies=cookies)
     return r.json()
 
 if __name__ == "__main__":
