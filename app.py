@@ -129,7 +129,7 @@ def renameparagraph(noteid):
     r = requests.put(url, cookies=cookies, json={"name": sudah})
     return r.json()
 
-@app.route("/api/notebook/<noteId>/paragraph/<paragraphId>", methods=["DELETE"])
+@app.route("/api/notebook/<noteId>/paragraph/<paragraphid>", methods=["DELETE"])
 def deleteparagraph(noteid,paragraphid):
     sudah = str(name)
     snoteid = str(noteid)
