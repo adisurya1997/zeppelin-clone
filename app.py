@@ -148,5 +148,18 @@ def runallparagraph(noteid):
     r = requests.post(url, cookies=cookies)
     return r.json()
 
+@app.route("/api/notebook/<noteid>/paragraph/<paragraphid>", methods=["PUT"])
+def updateparagraph(noteid,paragraphid):
+    request_data = request.get_json()
+    text = request_data['text']
+    stext = str(text)
+    snoteid = str(noteid)
+    sparagraphId = str(paragraphid)
+    source = str(request.args.get('JSESSIONID'))
+    url = 'http://10.207.26.22:9995/api/notebook/'+snoteid+'/paragraph/'+sparagraphId+''
+    cookies = {"JSESSIONID": source}
+    r = requests.delete(url, cookies=cookies, json={"text": stext})
+    return r.json()
+
 if __name__ == "__main__":
     app.run(debug=True)
