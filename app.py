@@ -158,7 +158,7 @@ def updateparagraph(noteid,paragraphid):
     source = str(request.args.get('JSESSIONID'))
     url = 'http://10.207.26.22:9995/api/notebook/'+snoteid+'/paragraph/'+sparagraphId+''
     cookies = {"JSESSIONID": source}
-    r = requests.delete(url, cookies=cookies, json={"text": stext})
+    r = requests.put(url, cookies=cookies, json={"text": stext})
     return r.json()
 
 if __name__ == "__main__":
