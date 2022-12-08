@@ -58,10 +58,15 @@ def login():
 def cpu():
     source = str(request.args.get('JSESSIONID'))
     url = 'http://10.207.26.22:9995/api/notebook'
-    userz = request.form.get('username')
     cookies = {"JSESSIONID": source}
     r = requests.get(url, cookies=cookies)
-    return r.json()
+    try:
+        if r.status_code == 200:
+            return r.json()
+        else:
+            return r.status_code(),401
+    except Exception:
+        return r.json(),401
 
 @app.get("/api/notebook/<noteId>")
 def cpus(noteId):
