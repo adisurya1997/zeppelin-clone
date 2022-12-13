@@ -24,7 +24,7 @@ def login():
     hostname = '10.10.65.3'
     port = 9995
     username = "centos"
-    password = "centos"
+    password = "qlwkejrh"
     userz = request.form.get('username')
     passz= request.form.get('password')
     usernamez= userz
